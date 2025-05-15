@@ -1,3 +1,4 @@
+/* Base styles */
 body {
   display: grid;
   grid-template-areas:
@@ -5,11 +6,14 @@ body {
     "top-aside"
     "main"
     "bottom-aside"
+    "columns"
     "footer";
   gap: 10px;
   padding: 20px;
   background-color: #ccc;
   font-family: Arial, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 header {
@@ -19,6 +23,7 @@ header {
   padding: 20px;
   text-align: center;
   border-radius: 10px;
+  min-height: 120px;
 }
 
 .top-aside {
@@ -28,24 +33,22 @@ header {
   padding: 20px;
   text-align: center;
   border-radius: 10px;
+  width: 100%;
+  min-height: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 main {
   grid-area: main;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   background-color: #4caf50;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.column {
-  background-color: #e91e63;
   color: white;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
+  margin-bottom: 0px;
 }
 
 .bottom-aside {
@@ -55,6 +58,29 @@ main {
   padding: 20px;
   text-align: center;
   border-radius: 10px;
+  width: 100%;
+  min-height: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.columns {
+  grid-area: columns;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.column {
+  background-color: #e91e63;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+
+  margin-top: 300px;
 }
 
 footer {
@@ -64,4 +90,35 @@ footer {
   padding: 20px;
   text-align: center;
   border-radius: 10px;
+  min-height: 120px;
+  margin-top: 0px;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  body {
+    grid-template-areas:
+      "header header header"
+      "left-aside main right-aside"
+      "columns columns columns"
+      "footer footer footer";
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+  }
+
+  .top-aside {
+    grid-area: left-aside;
+  }
+
+  .bottom-aside {
+    grid-area: right-aside;
+  }
+
+  .columns {
+    flex-direction: row;
+  }
+
+  .column {
+    flex: 1;
+  }
 }
